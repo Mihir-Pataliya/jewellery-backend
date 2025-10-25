@@ -1,29 +1,29 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Appointment = sequelize.define('Appointment', {
-    userId: { // Customer who booked
+    userId: { 
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    roleId: { // Role of the user (usually Customer)
+    roleId: { 
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    staffId: { // Staff assigned to handle appointment
+    staffId: { 
       type: DataTypes.INTEGER,
       allowNull: true,
     },
     appointmentDate: {
-      type: DataTypes.DATEONLY, // Only date
+      type: DataTypes.DATEONLY,
       allowNull: false,
     },
     appointmentTime: {
-      type: DataTypes.TIME, // Time of appointment
+      type: DataTypes.TIME, 
       allowNull: false,
     },
     status: {
       type: DataTypes.STRING,
-      defaultValue: 'pending', // pending, confirmed, cancelled
+      defaultValue: 'pending', 
       allowNull: false,
     },
     notes: {
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     tableName: 'Appointments',
-    timestamps: true, // createdAt and updatedAt
+    timestamps: true, 
   });
 
   Appointment.associate = function(models) {

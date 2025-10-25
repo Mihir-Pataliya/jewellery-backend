@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
 
   City.associate = function(models) {
     City.belongsTo(models.State, { foreignKey: 'stateId', as: 'state' });
-    // City.hasMany(models.Area, { foreignKey: 'cityId', as: 'areas' });
+    City.hasMany(models.Area, { foreignKey: 'cityId', as: 'areas' });
     // City.hasMany(models.Store, { foreignKey: 'cityId', as: 'stores' });
     // City.hasMany(models.Shipping, { foreignKey: 'cityId', as: 'shippings' });
 

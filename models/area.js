@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
   Area.associate = function(models) {
     Area.belongsTo(models.City, { foreignKey: 'cityId', as: 'city' });
     Area.hasMany(models.Store, { foreignKey: 'areaId', as: 'stores' });
-    Area.hasMany(models.Order, { foreignKey: 'areaId', as: 'orders' });
+    // Area.hasMany(models.Order, { foreignKey: 'areaId', as: 'orders' });
     Area.hasMany(models.Address, { foreignKey: 'areaId', as: 'addresses' });
-    Area.hasMany(models.Shipping, { foreignKey: 'areaId', as: 'shippings' });
+    // Area.hasMany(models.Shipping, { foreignKey: 'areaId', as: 'shippings' });
 };
 
   return Area;

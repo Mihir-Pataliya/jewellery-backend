@@ -38,9 +38,11 @@ const Offers = require('./offers')(sequelize, DataTypes);
 const Supplier = require('./suppliers')(sequelize, DataTypes);
 const Address=require('./address')(sequelize,DataTypes);
 const Area=require('./area')(sequelize,DataTypes);
+const Store=require('./store')(sequelize,DataTypes);
 
 State.associate({ City });
-City.associate({ State });
+City.associate({ State, Area });
+Area.associate({City,Address,Store})
 
 Tag.associate({ Product, ProductTags, User });
 
@@ -92,5 +94,6 @@ module.exports = {
   InventoryAnalytics,
   Offers,
   Address,
-  Area
+  Area,
+  User
 };
