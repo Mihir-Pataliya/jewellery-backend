@@ -1,11 +1,11 @@
 const { Tag, Product, ProductTags } = require('../models/mod');
 
-// 🟢 Create a new tag
+
 const createTag = async (req, res) => {
   try {
     const { name, slug, description, status } = req.body;
 
-    // Check if slug already exists
+    
     const existingTag = await Tag.findOne({ where: { slug } });
     if (existingTag) {
       return res.status(400).json({ message: 'Tag with this slug already exists' });
@@ -30,7 +30,7 @@ const createTag = async (req, res) => {
   }
 };
 
-// 🟡 Get all tags (with linked products)
+
 const getAllTags = async (req, res) => {
   try {
     const tags = await Tag.findAll({
@@ -38,7 +38,7 @@ const getAllTags = async (req, res) => {
         {
           model: Product,
           as: 'products',
-          through: { attributes: [] } // hide join table columns
+          through: { attributes: [] } 
         }
       ],
       order: [['createdAt', 'DESC']]
@@ -51,7 +51,7 @@ const getAllTags = async (req, res) => {
   }
 };
 
-// 🔵 Get one tag by ID
+
 const getTagById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -77,7 +77,6 @@ const getTagById = async (req, res) => {
   }
 };
 
-// 🧩 Update tag
 const updateTag = async (req, res) => {
   try {
     const { id } = req.params;
@@ -100,7 +99,7 @@ const updateTag = async (req, res) => {
   }
 };
 
-// 🗑️ Delete tag
+
 const deleteTag = async (req, res) => {
   try {
     const { id } = req.params;
@@ -110,10 +109,10 @@ const deleteTag = async (req, res) => {
       return res.status(404).json({ message: 'Tag not found' });
     }
 
-    // First delete all product-tag relations
-    await ProductTag.destroy({ where: { tagId: id } });
+    
+    await ProductTags.destroy({ where: { tagId: id } });
 
-    // Then delete the tag itself
+  
     await tag.destroy();
 
     return res.status(200).json({ message: 'Tag deleted successfully' });
@@ -123,7 +122,7 @@ const deleteTag = async (req, res) => {
   }
 };
 
-// 🔁 Toggle tag status (active/inactive)
+
 const toggleTagStatus = async (req, res) => {
   try {
     const { id } = req.params;
@@ -133,7 +132,7 @@ const toggleTagStatus = async (req, res) => {
       return res.status(404).json({ message: 'Tag not found' });
     }
 
-    tag.status = !tag.status; // Flip true/false
+    tag.status = !tag.status; 
     await tag.save();
 
     return res.status(200).json({
@@ -146,7 +145,7 @@ const toggleTagStatus = async (req, res) => {
   }
 };
 
-// ✅ Export all functions
+
 module.exports = {
   createTag,
   getAllTags,

@@ -2,7 +2,7 @@ const multer = require("multer");
 const bcrypt = require("bcryptjs");
 const sequelize = require("../db");
 const { DataTypes } = require("sequelize");
-const  User  = require("../models/user") (sequelize,DataTypes)// ✅ This automatically loads the User model from models/index.js
+const  User  = require("../models/user") (sequelize,DataTypes)
 const crypto=require("crypto")
 const sendEmail=require("../utils/nodemailer")
 const uploadToCloudinary=require("../utils/cloudinary")
@@ -47,11 +47,11 @@ const createUser = async (req, res) => {
       existingReferral = await User.findOne({ where: { referralCode: newReferralCode } });
     }
 
-    // Email verification
+    
     const emailVerificationToken = crypto.randomBytes(20).toString("hex");
     const emailVerificationTokenExpires = new Date(Date.now() + 10 * 60 * 1000);
 
-    // Profile Image
+    
     let profileImageUrl = null;
     if (file) {
       if (file) {
@@ -76,7 +76,7 @@ const createUser = async (req, res) => {
       walletBalance: 100.00
     });
 
-    // Send verification email
+    
     await sendEmail(
       user.email,
       "Verify Your Email",
