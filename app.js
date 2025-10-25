@@ -48,6 +48,9 @@ app.use('/',variantRoutes)
 const offerRoutes=require('./routes/offerRoutes')
 app.use('/',offerRoutes)
 
+const couponRoutes=require('./routes/couponRoutes')
+app.use('/',couponRoutes)
+
 
 sequelize
   .authenticate()
