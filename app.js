@@ -36,6 +36,9 @@ app.use('/',productRoutes)
 const supplierRoutes=require('./routes/suppliersRoutes')
 app.use('/',supplierRoutes)
 
+const areaRoutes=require('./routes/areaRoutes')
+app.use('/',areaRoutes)
+
 
 sequelize
   .authenticate()

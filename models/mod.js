@@ -91,5 +91,6 @@ module.exports = {
   Certificate,
   InventoryAnalytics,
   Offers,
-  Address
+  Address,
+  Area
 };
