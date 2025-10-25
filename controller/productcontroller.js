@@ -1,9 +1,7 @@
 const { Product, Category, Collection, Supplier } = require("../models/mod");
 const uploadToCloudinary = require("../utils/cloudinary");
 
-// =============================
-// 🟢 CREATE PRODUCT
-// =============================
+
 const createProduct = async (req, res) => {
   try {
     const {
@@ -42,12 +40,11 @@ const createProduct = async (req, res) => {
     if (req.files && req.files.length > 0) {
       for (const file of req.files) {
         const result = await uploadToCloudinary(file.path, "products");
-        imageUrls.push(result.secure_url); // store Cloudinary URL
+        imageUrls.push(result.secure_url);
       }
     }
 
 
-    // ✅ Basic Validation
     if (!name || !categoryId || !collectionId || !metalType || !price || !sku) {
       return res.status(400).json({
         message:
@@ -55,7 +52,6 @@ const createProduct = async (req, res) => {
       });
     }
 
-    // ✅ Create Product
     const product = await Product.create({
       name,
       description,
@@ -99,9 +95,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// =============================
-// 🟡 GET ALL PRODUCTS
-// =============================
+
 const getAllProducts = async (req, res) => {
   try {
     const products = await Product.findAll({
@@ -123,9 +117,7 @@ const getAllProducts = async (req, res) => {
   }
 };
 
-// =============================
-// 🔵 GET PRODUCT BY ID
-// =============================
+
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -151,9 +143,7 @@ const getProductById = async (req, res) => {
   }
 };
 
-// =============================
-// 🟠 UPDATE PRODUCT
-// =============================
+
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -163,23 +153,19 @@ const updateProduct = async (req, res) => {
       return res.status(404).json({ message: "❌ Product not found" });
     }
 
-    // Make sure imageUrls is an array
     let imageUrls = Array.isArray(product.imageUrls) ? product.imageUrls : [];
 
-    // Upload new images to Cloudinary
+
     if (req.files && req.files.length > 0) {
       const uploadResults = [];
       for (const file of req.files) {
-        const result = await uploadToCloudinary(file.path, "products"); // cloudinary function
+        const result = await uploadToCloudinary(file.path, "products"); 
         uploadResults.push(result.secure_url);
       }
-
-      // Replace old images OR append new images
-      imageUrls = uploadResults; // replace old images
-      // imageUrls = [...imageUrls, ...uploadResults]; // if you want to keep old images too
+      imageUrls = uploadResults; 
+      
     }
 
-    // Update product
     await product.update({ imageUrls });
 
     return res.status(200).json({
@@ -191,9 +177,7 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// =============================
-// 🔴 DELETE PRODUCT
-// =============================
+
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -213,9 +197,7 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-// =============================
-// 🟣 EXPORT ALL FUNCTIONS
-// =============================
+
 module.exports = {
   createProduct,
   getAllProducts,

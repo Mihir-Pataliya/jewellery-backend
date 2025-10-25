@@ -2,7 +2,6 @@ const sequelize=require('../db')
 const{DataTypes}=require('sequelize')
 const Role = require('../models/role') (sequelize,DataTypes);
 
-// CREATE ROLE
 const createRole = async (req, res) => {
   try {
     const { name, description, status } = req.body;
@@ -11,7 +10,6 @@ const createRole = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Role name is required' });
     }
 
-    // check if role already exists
     const existingRole = await Role.findOne({ where: { name } });
     if (existingRole) {
       return res.status(400).json({ success: false, message: 'Role already exists' });
@@ -33,7 +31,6 @@ const createRole = async (req, res) => {
   }
 };
 
-// GET ALL ROLES
 const getAllRoles = async (req, res) => {
   try {
     const roles = await Role.findAll();
@@ -44,7 +41,6 @@ const getAllRoles = async (req, res) => {
   }
 };
 
-// GET ROLE BY ID
 const getRoleById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -58,7 +54,6 @@ const getRoleById = async (req, res) => {
   }
 };
 
-// UPDATE ROLE
 const updateRole = async (req, res) => {
   try {
     const { id } = req.params;
@@ -81,7 +76,6 @@ const updateRole = async (req, res) => {
   }
 };
 
-// DELETE ROLE
 const deleteRole = async (req, res) => {
   try {
     const { id } = req.params;

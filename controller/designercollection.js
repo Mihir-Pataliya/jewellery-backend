@@ -3,7 +3,6 @@ const {DataTypes}=require('sequelize')
 const  DesignerCollections  = require("../models/designercollection") (sequelize,DataTypes);
 const uploadToCloudinary = require("../utils/cloudinary");
 
-// 🟢 Create Designer Collection
 const createDesignerCollection = async (req, res) => {
   try {
     const { name, description, status, collectionId } = req.body;
@@ -19,7 +18,7 @@ const createDesignerCollection = async (req, res) => {
       logoUrl = uploadResult.secure_url;
     }
 
-    // create collection
+    
     const collection = await DesignerCollections.create({
       name,
       description,
@@ -45,7 +44,7 @@ const createDesignerCollection = async (req, res) => {
   }
 };
 
-// 🟡 Get all collections
+
 const getAllDesignerCollections = async (req, res) => {
   try {
     const collections = await DesignerCollections.findAll();
@@ -59,7 +58,6 @@ const getAllDesignerCollections = async (req, res) => {
   }
 };
 
-// 🔵 Get single collection by ID
 const getDesignerCollectionById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -79,7 +77,7 @@ const getDesignerCollectionById = async (req, res) => {
   }
 };
 
-// 🟣 Update collection
+
 const updateDesignerCollection = async (req, res) => {
   try {
     const { id } = req.params;
@@ -107,7 +105,7 @@ const updateDesignerCollection = async (req, res) => {
   }
 };
 
-// 🔴 Delete collection
+
 const deleteDesignerCollection = async (req, res) => {
   try {
     const { id } = req.params;
@@ -127,7 +125,6 @@ const deleteDesignerCollection = async (req, res) => {
   }
 };
 
-// 🧩 Export all functions
 module.exports = {
   createDesignerCollection,
   getAllDesignerCollections,
