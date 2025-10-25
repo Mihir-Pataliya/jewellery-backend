@@ -1,8 +1,6 @@
 const { Supplier } = require('../models/mod');
 
-// =============================
-// 🟢 CREATE SUPPLIER
-// =============================
+
 const createSupplier = async (req, res) => {
   try {
     const { name, contactPerson, email, phone, address, city, state, country, status } = req.body;
@@ -33,9 +31,7 @@ const createSupplier = async (req, res) => {
   }
 };
 
-// =============================
-// 🟡 GET ALL SUPPLIERS
-// =============================
+
 const getAllSuppliers = async (req, res) => {
   try {
     const suppliers = await Supplier.findAll();
@@ -45,9 +41,7 @@ const getAllSuppliers = async (req, res) => {
   }
 };
 
-// =============================
-// 🔵 GET SUPPLIER BY ID
-// =============================
+
 const getSupplierById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,9 +57,7 @@ const getSupplierById = async (req, res) => {
   }
 };
 
-// =============================
-// 🟠 UPDATE SUPPLIER
-// =============================
+
 const updateSupplier = async (req, res) => {
   try {
     const { id } = req.params;
@@ -86,9 +78,7 @@ const updateSupplier = async (req, res) => {
   }
 };
 
-// =============================
-// 🔴 DELETE SUPPLIER
-// =============================
+
 const deleteSupplier = async (req, res) => {
   try {
     const { id } = req.params;

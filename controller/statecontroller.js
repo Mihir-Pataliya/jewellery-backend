@@ -1,10 +1,10 @@
 const { State } = require('../models/mod');
-// ✅ Create a new State
+
 const createState = async (req, res) => {
   try {
     const { name, code, country, status } = req.body;
 
-    // Check if state already exists
+    
     const existingState = await State.findOne({ where: { name } });
     if (existingState) {
       return res.status(400).json({ message: 'State already exists' });
@@ -21,7 +21,7 @@ const createState = async (req, res) => {
   }
 };
 
-// ✅ Get all States
+
 const getAllStates = async (req, res) => {
   try {
     const states = await State.findAll({
@@ -40,7 +40,7 @@ const getAllStates = async (req, res) => {
   }
 };
 
-// ✅ Get State by ID
+
 const getStateById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -60,7 +60,7 @@ const getStateById = async (req, res) => {
   }
 };
 
-// ✅ Update State
+
 const updateState = async (req, res) => {
   try {
     const { id } = req.params;
@@ -82,7 +82,7 @@ const updateState = async (req, res) => {
   }
 };
 
-// ✅ Delete State
+
 const deleteState = async (req, res) => {
   try {
     const { id } = req.params;
@@ -102,16 +102,16 @@ const deleteState = async (req, res) => {
 
 
 
-// ✅ Create multiple States
+
 const createMultipleStates = async (req, res) => {
   try {
-    const statesData = req.body; // expect an array of objects
+    const statesData = req.body; 
 
     if (!Array.isArray(statesData)) {
       return res.status(400).json({ message: "Data should be an array" });
     }
 
-    // Use bulkCreate to insert multiple rows at once
+    
     const states = await State.bulkCreate(statesData);
 
     return res.status(201).json({
@@ -126,7 +126,7 @@ const createMultipleStates = async (req, res) => {
 };
 
 
-// ✅ Export all functions together
+
 module.exports = {
   createState,
   getAllStates,
