@@ -90,34 +90,24 @@ const getOfferById = async (req, res) => {
 const updateOffer = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, offer_type, discount_value, start_date, end_date, status, created_by, product_id, category_id } = req.body;
+    const updateData = req.body; 
 
     const offer = await Offers.findByPk(id);
     if (!offer) {
       return res.status(404).json({ success: false, message: 'Offer not found' });
     }
 
-    if (product_id) {
-      const product = await Product.findByPk(product_id);
+    if (updateData.product_id) {
+      const product = await Product.findByPk(updateData.product_id);
       if (!product) return res.status(400).json({ success: false, message: 'Product not found' });
     }
-    if (category_id) {
-      const category = await Category.findByPk(category_id);
+
+    if (updateData.category_id) {
+      const category = await Category.findByPk(updateData.category_id);
       if (!category) return res.status(400).json({ success: false, message: 'Category not found' });
     }
 
-    await offer.update({
-      name,
-      description,
-      offer_type,
-      discount_value,
-      start_date,
-      end_date,
-      status,
-      created_by,
-      product_id,
-      category_id
-    });
+    await offer.update(updateData);
 
     return res.status(200).json({ success: true, message: 'Offer updated successfully', data: offer });
 
@@ -125,6 +115,7 @@ const updateOffer = async (req, res) => {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
 
 const deleteOffer = async (req, res) => {
   try {
