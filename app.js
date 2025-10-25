@@ -45,6 +45,9 @@ app.use('/',addressRoutes)
 const variantRoutes=require('./routes/variantRoutes')
 app.use('/',variantRoutes)
 
+const offerRoutes=require('./routes/offerRoutes')
+app.use('/',offerRoutes)
+
 
 sequelize
   .authenticate()

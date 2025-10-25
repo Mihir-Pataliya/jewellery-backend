@@ -22,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(10,2),
       allowNull: false
     },
+
+    offer_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+    },
+  
     minPurchaseAmount: {
       type: DataTypes.DECIMAL(10,2),
       defaultValue: 0.00
@@ -56,6 +62,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Coupon.associate = function(models) {
+    Coupon.belongsTo(models.Offers, { foreignKey: 'offer_id', as: 'offer' });
     Coupon.hasMany(models.Order, { foreignKey: 'couponId', as: 'orders' });
     Coupon.hasMany(models.OrderPromo, { foreignKey: 'couponId', as: 'orderPromos' });
   };

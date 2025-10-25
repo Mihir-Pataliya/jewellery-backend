@@ -54,7 +54,6 @@ module.exports = (sequelize, DataTypes) => {
     couponId: {
   type: DataTypes.INTEGER,
   allowNull: true,
-  references: { model: 'Coupons', key: 'id' }
 },
 
     shippingCharges: {
