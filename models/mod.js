@@ -36,6 +36,8 @@ const Certificate = require('./certificate')(sequelize, DataTypes);
 const InventoryAnalytics = require('./inventoryAnalytic')(sequelize, DataTypes);
 const Offers = require('./offers')(sequelize, DataTypes);
 const Supplier = require('./suppliers')(sequelize, DataTypes);
+const Address=require('./address')(sequelize,DataTypes);
+const Area=require('./area')(sequelize,DataTypes);
 
 State.associate({ City });
 City.associate({ State });
@@ -51,6 +53,7 @@ Product.associate({
 });
 
 ProductTags.associate({ Product, Tag });
+Address.associate({ User, Area });
 
 module.exports = {
   sequelize,
@@ -87,5 +90,6 @@ module.exports = {
   Variant,
   Certificate,
   InventoryAnalytics,
-  Offers
+  Offers,
+  Address
 };
