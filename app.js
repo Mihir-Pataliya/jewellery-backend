@@ -42,6 +42,9 @@ app.use('/',areaRoutes)
 const addressRoutes=require('./routes/addressRoutes')
 app.use('/',addressRoutes)
 
+const variantRoutes=require('./routes/variantRoutes')
+app.use('/',variantRoutes)
+
 
 sequelize
   .authenticate()

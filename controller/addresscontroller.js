@@ -3,7 +3,6 @@
 const { Address, Area, City, State, User } = require('../models/mod');
 const geocoder = require('../utils/geocoders');
 
-// Helper function to get coordinates
 const getCoordinates = async (street, building, pincode, area) => {
   const cityName = area.city?.name || '';
   const stateName = area.city?.state?.name || '';
