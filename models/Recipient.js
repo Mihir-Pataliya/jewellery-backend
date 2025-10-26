@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Recipient = sequelize.define('Recipient', {
     id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-    name: { type: DataTypes.STRING, allowNull: false } // HER, HIM, Mother, Father
+    name: { type: DataTypes.STRING, allowNull: false } 
   }, {
     tableName: 'Recipients',
     timestamps: false

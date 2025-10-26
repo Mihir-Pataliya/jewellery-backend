@@ -51,6 +51,9 @@ app.use('/',offerRoutes)
 const couponRoutes=require('./routes/couponRoutes')
 app.use('/',couponRoutes)
 
+const taxRoutes=require('./routes/taxRoutes')
+app.use('/',taxRoutes)
+
 
 sequelize
   .authenticate()

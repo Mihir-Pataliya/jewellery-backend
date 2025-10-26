@@ -40,6 +40,7 @@ const Address=require('./address')(sequelize,DataTypes);
 const Area=require('./area')(sequelize,DataTypes);
 const Store=require('./store')(sequelize,DataTypes);
 const Coupon=require('./coupon')(sequelize,DataTypes)
+const TaxCalculation=require('./tax')(sequelize,DataTypes)
 
 State.associate({ City });
 City.associate({ State, Area });
@@ -97,5 +98,6 @@ module.exports = {
   Address,
   Area,
   User,
-  Coupon
+  Coupon,
+  TaxCalculation
 };

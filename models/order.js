@@ -38,10 +38,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    billingAddressId: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
+
     shippingMethod: {
       type: DataTypes.ENUM('Standard','Express','SameDay'),
       defaultValue: 'Standard'
@@ -52,9 +49,9 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     couponId: {
-  type: DataTypes.INTEGER,
-  allowNull: true,
-},
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    },
 
     shippingCharges: {
       type: DataTypes.DECIMAL(12, 2),
@@ -69,7 +66,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DECIMAL(12,2),
       defaultValue: 0
     },
-
+    finalAmountToPay: {
+    type: DataTypes.DECIMAL(12, 2),
+   defaultValue: 0
+  },
 
     notes: {
       type: DataTypes.TEXT,
