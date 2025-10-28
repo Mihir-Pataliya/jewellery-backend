@@ -5,15 +5,24 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    couponId: { // link to coupon used
+
+
+    couponId: { 
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    promoCode: { // code entered by customer
+
+
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+
+    promoCode: { 
       type: DataTypes.STRING,
       allowNull: false
     },
-    discountAmount: { // how much discount applied
+    discountAmount: { 
       type: DataTypes.DECIMAL(10,2),
       allowNull: false,
       defaultValue: 0

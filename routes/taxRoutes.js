@@ -6,7 +6,7 @@ const router = express.Router();
 const {
   createTax,
   getAllTaxes,
-  getTaxByProduct,
+  getTaxByMetal,
   updateTax,
   deleteTax
 } = require('../controller/taxcontroller');
@@ -16,7 +16,7 @@ router.post('/createtax', createTax);
 
 router.get('/getalltaxes', getAllTaxes);
 
-router.get('/product/:productId', getTaxByProduct);
+router.get('/product/:productId', getTaxByMetal);
 
 router.put('/:id', updateTax);
 

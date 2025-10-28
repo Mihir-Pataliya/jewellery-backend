@@ -48,10 +48,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
 
-    couponId: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    },
+    // couponId: {
+    // type: DataTypes.INTEGER,
+    // allowNull: true,
+    // },
 
     shippingCharges: {
       type: DataTypes.DECIMAL(12, 2),
@@ -88,7 +88,7 @@ module.exports = (sequelize, DataTypes) => {
     Order.hasMany(models.OrderItem, { foreignKey: 'orderId', as: 'orderItems' });
     Order.hasMany(models.SalesReport, { foreignKey: 'orderId', as: 'salesReports' });
     Order.hasMany(models.WalletHistory, { foreignKey: 'orderId', as: 'walletHistories' });
-    Order.belongsTo(models.Coupon, { foreignKey: 'couponId', as: 'coupon' });
+    // Order.belongsTo(models.Coupon, { foreignKey: 'couponId', as: 'coupon' });
     Order.hasMany(models.Shipping, { foreignKey: 'orderId', as: 'shippings' });
     Order.hasMany(models.Invoice, { foreignKey: 'orderId', as: 'invoices' });
     Order.hasMany(models.LoyaltyTransaction, { foreignKey: 'orderId', as: 'loyaltyTransactions' });

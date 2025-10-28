@@ -215,6 +215,13 @@ module.exports = (sequelize, DataTypes) => {
       Product.hasMany(models.InventoryAnalytics, { foreignKey: 'productId', as: 'inventoryAnalytics' });
 
       Product.hasMany(models.Offers, { foreignKey: 'product_id', as: 'offers' });
+
+//       Product.belongsTo(models.TaxCalculation, {
+//      foreignKey: 'metalType',    // product.metalType
+//      targetKey: 'metalType',     // taxCalculation.metalType
+//       as: 'taxInfo'
+// });
+
 };
 
   return Product;

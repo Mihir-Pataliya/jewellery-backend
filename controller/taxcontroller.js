@@ -2,22 +2,25 @@
 
 const { TaxCalculation, Product } = require('../models/mod'); 
 
-
+// ✅ Create new tax for a metal type
 const createTax = async (req, res) => {
   try {
-    const { productId, taxType, taxPercentage, effectiveFrom, effectiveTo } = req.body;
+    const { metalType, taxType, taxPercentage, effectiveFrom, effectiveTo } = req.body;
 
-    if (!productId || !taxType || !taxPercentage || !effectiveFrom) {
+    // validation
+    if (!metalType || !taxType || !taxPercentage || !effectiveFrom) {
       return res.status(400).json({ message: 'Please provide required fields' });
     }
 
-     const product=await Product.findByPk(productId);
-     if(!product){
-       return res.status(404).json({message:'Product not found'})
-     }
+    // check if there are any products with this metal type (optional validation)
+    const product = await Product.findOne({ where: { metalType } });
+    if (!product) {
+      return res.status(404).json({ message: 'No product found for this metal type' });
+    }
 
+    // create tax record
     const tax = await TaxCalculation.create({
-      productId,
+      metalType,
       taxType,
       taxPercentage,
       effectiveFrom,
@@ -32,10 +35,11 @@ const createTax = async (req, res) => {
 };
 
 
+// ✅ Get all tax records with related products
 const getAllTaxes = async (req, res) => {
   try {
     const taxes = await TaxCalculation.findAll({
-      include: [{ model: Product, as: 'product' }]
+      include: [{ model: Product, as: 'products' }]  // metalType-based association
     });
     res.status(200).json({ taxes });
   } catch (error) {
@@ -45,17 +49,18 @@ const getAllTaxes = async (req, res) => {
 };
 
 
-const getTaxByProduct = async (req, res) => {
+// ✅ Get tax by metal type
+const getTaxByMetal = async (req, res) => {
   try {
-    const { productId } = req.params;
+    const { metalType } = req.params;
 
     const tax = await TaxCalculation.findAll({
-      where: { productId },
-      include: [{ model: Product, as: 'product' }]
+      where: { metalType },
+      include: [{ model: Product, as: 'products' }]
     });
 
-    if (!tax) {
-      return res.status(404).json({ message: 'Tax not found for this product' });
+    if (!tax || tax.length === 0) {
+      return res.status(404).json({ message: 'No tax found for this metal type' });
     }
 
     res.status(200).json({ tax });
@@ -65,6 +70,8 @@ const getTaxByProduct = async (req, res) => {
   }
 };
 
+
+// ✅ Update tax details
 const updateTax = async (req, res) => {
   try {
     const { id } = req.params;
@@ -83,6 +90,7 @@ const updateTax = async (req, res) => {
 };
 
 
+// ✅ Delete tax record
 const deleteTax = async (req, res) => {
   try {
     const { id } = req.params;
@@ -100,7 +108,7 @@ const deleteTax = async (req, res) => {
 module.exports = {
   createTax,
   getAllTaxes,
-  getTaxByProduct,
+  getTaxByMetal,
   updateTax,
   deleteTax
 };

@@ -63,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Coupon.associate = function(models) {
     Coupon.belongsTo(models.Offers, { foreignKey: 'offer_id', as: 'offer' });
-    Coupon.hasMany(models.Order, { foreignKey: 'couponId', as: 'orders' });
+    // Coupon.hasMany(models.Order, { foreignKey: 'couponId', as: 'orders' });
     Coupon.hasMany(models.OrderPromo, { foreignKey: 'couponId', as: 'orderPromos' });
   };
 
