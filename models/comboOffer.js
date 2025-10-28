@@ -10,11 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true
     },
     discountType: {
-      type: DataTypes.ENUM('percentage','fixed'),
+      type: DataTypes.ENUM('percentage', 'fixed'),
       defaultValue: 'percentage'
     },
     discountValue: {
-      type: DataTypes.DECIMAL(10,2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false
     },
     startDate: {
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     status: {
-      type: DataTypes.ENUM('active','inactive','expired'),
+      type: DataTypes.ENUM('active', 'inactive', 'expired'),
       defaultValue: 'active'
     },
     createdBy: {
@@ -44,13 +44,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   ComboOffer.associate = function(models) {
-
-    ComboOffer.hasMany(models.ComboOfferProducts, { foreignKey: 'comboOfferId', as: 'comboOfferProducts' });
-
-    ComboOffer.belongsToMany(models.Product, { 
-      through: 'ComboOfferProducts', 
-      as: 'products', 
-      foreignKey: 'comboOfferId' 
+    // ✅ Only use hasMany here (no belongsToMany)
+    ComboOffer.hasMany(models.ComboOfferProducts, { 
+      foreignKey: 'comboOfferId', 
+      as: 'comboOfferProducts' 
     });
   };
 

@@ -63,6 +63,9 @@ app.use('/',orderItemRoutes)
 const orderPromoRoutes=require('./routes/orderPromoRoutes')
 app.use('/',orderPromoRoutes)
 
+const comboOfferRoutes=require('./routes/comboOfferRoutes')
+app.use('/',comboOfferRoutes)
+
 sequelize
   .authenticate()
   .then(() => console.log("✅ Database connected successfully"))
