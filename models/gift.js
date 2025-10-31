@@ -14,13 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Gift.associate = function(models) {
-    // Gift belongs to a Product
+    
     Gift.belongsTo(models.Product, { foreignKey: 'productId', as: 'product' });
 
-    // Gift has many Occasions through Gift_Occasion
     Gift.belongsToMany(models.Occasion, { through: models.Gift_Occasion, as: 'occasions', foreignKey: 'giftId', otherKey: 'occasionId' });
 
-    // Gift has many Recipients through Gift_Recipient
     Gift.belongsToMany(models.Recipient, { through: models.Gift_Recipient, as: 'recipients', foreignKey: 'giftId', otherKey: 'recipientId' });
   };
 

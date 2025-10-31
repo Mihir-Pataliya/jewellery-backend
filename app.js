@@ -69,6 +69,9 @@ app.use('/',comboOfferRoutes)
 const Store=require('./routes/storeRoutes')
 app.use('/',Store)
 
+const GiftRoutes=require('./routes/giftRoutes')
+app.use('/',GiftRoutes)
+
 sequelize
   .authenticate()
   .then(() => console.log("✅ Database connected successfully"))
