@@ -72,10 +72,10 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: true
     },
 
-      referralCode: { 
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+    referralCode: { 
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true
     },
 
     walletBalance: { 

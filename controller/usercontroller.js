@@ -25,7 +25,6 @@ const createUser = async (req, res) => {
       return res.status(400).json({ message: "Email is already registered" });
     }
 
-    // Password validation
     const validatePassword = (password) => {
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
       return regex.test(password);
@@ -39,7 +38,6 @@ const createUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Referral code
     let newReferralCode = referralCode || "REF" + Date.now();
     let existingReferral = await User.findOne({ where: { referralCode: newReferralCode } });
     while (existingReferral) {
@@ -137,7 +135,6 @@ const login=async(req,res)=>{
           message: `Account temporarily blocked. Try again after ${minutesLeft} minute(s).`
         });
       } else {
-        
         user.failedLoginAttempts = 0;
         await user.save();
       }
@@ -173,7 +170,6 @@ const login=async(req,res)=>{
       },
       token,
     });
-
 
   } 
   catch(error){

@@ -6,7 +6,7 @@ const sendEmail = async (to, subject, text) => {
       service: 'gmail',
       auth: {
         user: "mihirpataliya11@gmail.com",
-        pass: "kdkz xtwm xqzz hoas" // remove spaces
+        pass: "kdkz xtwm xqzz hoas" 
       }
     });
 
@@ -15,10 +15,10 @@ const sendEmail = async (to, subject, text) => {
       to: to,
       subject: subject,
       text: text
-      // or use html: "<h1>" + text + "</h1>"
-    };
+      
+  };
 
-    const info = await transporter.sendMail(mailOptions); // THIS LINE WAS MISSING
+    const info = await transporter.sendMail(mailOptions); 
     console.log("Email sent:", info.response);
     return info;
 

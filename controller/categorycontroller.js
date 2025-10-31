@@ -67,6 +67,11 @@ const getallcategorybyid=async(req,res)=>{
                 {model:PriceRange,as:'priceRanges'}
         ]
            });
+
+
+           result.views = (result.views || 0) + 1;
+           await result.save();
+
            return res.status(200).json({message:"category fetched successfully",data:result})
     }
     catch(err){
@@ -111,10 +116,35 @@ const deletecategory=async(req,res)=>{
     }
 }
 
+
+const likeCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await category.findByPk(id);
+    if (!result) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    result.likes = (result.likes || 0) + 1;
+    await result.save();
+
+    return res.status(200).json({
+      message: "Category liked successfully",
+      totalLikes: result.likes
+    });
+
+  } catch (err) {
+    return res.status(500).json({ message: "Internal server error", error: err.message });
+  }
+};
+
+
 module.exports={
     createcategory,
     getallcategory,
     getallcategorybyid,
     updatecategory,
-    deletecategory
+    deletecategory,
+    likeCategory
 }

@@ -103,6 +103,7 @@ module.exports = {
   Coupon,
   TaxCalculation,
   Order,
-  OrderPromo
+  OrderPromo,
+  Store
 
 };

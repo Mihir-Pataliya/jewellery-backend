@@ -29,23 +29,23 @@ function verifyToken(req, res, next) {
   }
 }
 
-// Allow multiple roles dynamically using DB
+
 function allowRoles(...allowedRoles) {
   return async (req, res, next) => {
     if (!req.user) {
-      return res.status(403).json({ success: false, message: '❌ Access denied' });
+      return res.status(403).json({ success: false, message: ' Access denied' });
     }
 
     try {
       // Fetch the role from the Role table using roleId
       const role = await Role.findOne({ where: { id: req.user.roleId } });
       if (!role) {
-        return res.status(403).json({ success: false, message: '❌ User role not found' });
+        return res.status(403).json({ success: false, message: ' User role not found' });
       }
 
       // Check if the role name is in allowedRoles
      if (!allowedRoles.map(r => r.toLowerCase()).includes(role.name.toLowerCase().trim())) {
-        return res.status(403).json({ success: false, message: '❌ Access denied' });
+        return res.status(403).json({ success: false, message: ' Access denied' });
       }
 
 

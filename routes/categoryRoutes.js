@@ -9,5 +9,6 @@ router.get('/getallcategory',categorycontrollers.getallcategory)
 router.get('/getallcategory/:id',categorycontrollers.getallcategorybyid)
 router.put('/updatecategory/:id',categorycontrollers.updatecategory)
 router.delete('/deletecategory/:id',categorycontrollers.deletecategory)
+router.post('/:id/like',categorycontrollers. likeCategory);
 
 module.exports=router;
